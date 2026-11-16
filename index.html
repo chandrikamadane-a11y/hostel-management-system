@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hostel Management System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Login -->
+<section id="login">
+  <form id="loginForm">
+    <h1>Hostel Manager</h1>
+    <p>Sign in as warden to continue.</p>
+    <input id="user" placeholder="Username" required autocomplete="username">
+    <input id="pass" type="password" placeholder="Password" required autocomplete="current-password">
+    <button class="btn">Sign in</button>
+    <small id="loginErr"></small>
+    <small class="hint">Demo login: admin / admin123</small>
+  </form>
+</section>
+
+<!-- App -->
+<div id="app" hidden>
+  <aside>
+    <h2>Hostel Manager</h2>
+    <nav>
+      <button data-view="dashboard" class="active">Dashboard</button>
+      <button data-view="rooms">Rooms</button>
+      <button data-view="students">Students</button>
+      <button data-view="fees">Fees</button>
+    </nav>
+    <button id="logout" class="link">Log out</button>
+  </aside>
+
+  <main>
+    <!-- Dashboard -->
+    <section id="dashboard" class="view">
+      <h1>Dashboard</h1>
+      <div class="stats" id="stats"></div>
+      <h3>Occupancy by room</h3>
+      <div id="bars"></div>
+    </section>
+
+    <!-- Rooms -->
+    <section id="rooms" class="view" hidden>
+      <h1>Rooms</h1>
+      <form id="roomForm" class="row">
+        <input id="roomNo" placeholder="Room no. (e.g. 101)" required>
+        <select id="roomType"><option>Single</option><option>Double</option><option>Triple</option><option>Dormitory</option></select>
+        <input id="roomCap" type="number" min="1" max="12" placeholder="Capacity" required>
+        <button class="btn">Add room</button>
+      </form>
+      <table><thead><tr><th>Room</th><th>Type</th><th>Occupied</th><th>Status</th><th></th></tr></thead><tbody id="roomRows"></tbody></table>
+    </section>
+
+    <!-- Students -->
+    <section id="students" class="view" hidden>
+      <h1>Students</h1>
+      <form id="stuForm" class="row">
+        <input id="sName" placeholder="Full name" required>
+        <input id="sPhone" placeholder="Phone" pattern="[0-9]{10}" title="10 digit number" required>
+        <input id="sCourse" placeholder="Course" required>
+        <select id="sRoom" required></select>
+        <input id="sFee" type="number" min="0" placeholder="Monthly fee (₹)" required>
+        <button class="btn" id="stuBtn">Add student</button>
+      </form>
+      <input id="search" class="search" placeholder="Search by name, course or room">
+      <table><thead><tr><th>Name</th><th>Phone</th><th>Course</th><th>Room</th><th></th></tr></thead><tbody id="stuRows"></tbody></table>
+    </section>
+
+    <!-- Fees -->
+    <section id="fees" class="view" hidden>
+      <h1>Fees</h1>
+      <div class="stats" id="feeStats"></div>
+      <table><thead><tr><th>Student</th><th>Room</th><th>Fee</th><th>Status</th><th></th></tr></thead><tbody id="feeRows"></tbody></table>
+    </section>
+  </main>
+</div>
+
+<div id="toast" role="status"></div>
+<script src="script.js"></script>
+</body>
+</html>
